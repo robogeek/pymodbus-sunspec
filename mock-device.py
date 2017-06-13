@@ -15,7 +15,6 @@ log.setLevel(logging.DEBUG)
 # TODO Model objects for each model
 # TODO Each Model object provides useful functions
 # TODO Mechanism to protect certain registers against being written-to
-# TODO Mechanism to assign the base address for a Model based on the previously assigned Model
 
 
 # set up the data storage
@@ -26,6 +25,8 @@ ir = ModbusSequentialDataBlock(40000, [0]*20000)
 # For SunSpec purposes, we only need input registers
 store = ModbusSlaveContext(di=None, co=None, hr=None, ir=ir)
 context = ModbusServerContext(slaves=store, single=True)
+
+# TODO When instantiating a model, save a reference to that model here so that it can be manipulated later
 
 sunspecMap = SunSpecModbusMap(ir, 40000)
 sunspecMap.placeSunSMarker()
